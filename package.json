@@ -6,6 +6,9 @@
   "author": "Nemoto Masaharu <nemoto.masaharu.it@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "prepare": "husky install"
+  },
   "workspaces": [
     "web"
   ],
