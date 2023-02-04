@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["Nuxt", "SubscList-ion"],
+  "cSpell.words": ["Nuxt", "nuxtjs", "SubscList-ion", "tailwindcss"],
   "cSpell.ignorePaths": [
     "package-lock.json",
     "node_modules",
