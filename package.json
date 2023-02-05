@@ -10,7 +10,8 @@
     "prepare": "husky install"
   },
   "workspaces": [
-    "web"
+    "web",
+    "bff"
   ],
   "devDependencies": {
     "husky": "^8.0.3",
