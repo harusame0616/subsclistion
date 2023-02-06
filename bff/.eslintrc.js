@@ -10,6 +10,7 @@ module.exports = {
     'airbnb-base',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'eslint-import-resolver-typescript',
   ],
   root: true,
   env: {
@@ -35,5 +36,11 @@ module.exports = {
         optionalDependencies: false,
       },
     ],
+  },
+  'import/resolver': {
+    typescript: {
+      alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+      project: 'packages/*/tsconfig.json',
+    },
   },
 };
