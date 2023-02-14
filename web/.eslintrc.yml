@@ -1,7 +1,0 @@
-root: true
-
-extends:
-  - 'airbnb-base'
-  - 'airbnb-typescript/base'
-  - '@nuxt/eslint-config'
-  - 'prettier'

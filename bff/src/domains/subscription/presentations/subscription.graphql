@@ -1,0 +1,19 @@
+enum IntervalAmount {
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
+type Subscription {
+  id: ID!
+  price: Int!
+  serviceName: String!
+  intervalValue: Int!
+  intervalAmount: IntervalAmount!
+  firstPaymentDate: String!
+}
+
+type Query {
+  subscriptions: [Subscription!]!
+}

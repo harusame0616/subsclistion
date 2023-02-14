@@ -1,6 +1,7 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { SubscriptionModule } from './domains/subscription/subscription.module';
 
 @Module({
   imports: [
@@ -9,6 +10,7 @@ import { GraphQLModule } from '@nestjs/graphql';
       typePaths: ['./**/*.graphql'],
       playground: true,
     }),
+    SubscriptionModule,
   ],
   controllers: [],
   providers: [],
