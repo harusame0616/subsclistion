@@ -1,6 +1,7 @@
 import { getRepository } from '../lib/injection';
 import { Subscription } from './subscription-repository';
 
+export type { IntervalAmount } from '~~/src/generated/gql/graphql';
 const subscriptionRepository = getRepository('Subscription');
 
 export const useSubscriptionList = () => {

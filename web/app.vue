@@ -1,5 +1,7 @@
+<script lang="ts" setup></script>
+
 <template>
   <div>
-    <NuxtWelcome />
+    <NuxtPage class="text-gray-200" />
   </div>
 </template>
