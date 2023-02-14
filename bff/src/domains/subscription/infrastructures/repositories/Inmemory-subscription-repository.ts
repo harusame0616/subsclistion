@@ -29,4 +29,8 @@ export class InmemorySubscriptionRepository implements SubscriptionRepository {
       SubscriptionEntity.fromDto(subscriptionDto),
     );
   }
+
+  async save(subscription: SubscriptionEntity) {
+    InmemorySubscriptionRepository.store.push(subscription.toDto());
+  }
 }
