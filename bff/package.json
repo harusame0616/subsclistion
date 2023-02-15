@@ -61,6 +61,7 @@
     "typescript": "^4.7.4"
   },
   "jest": {
+    "extends": "./tsconfig.json",
     "moduleFileExtensions": [
       "js",
       "json",
