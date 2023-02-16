@@ -14,12 +14,30 @@ export type Scalars = {
   Float: number;
 };
 
+export type CreateSubscriptionInput = {
+  firstPaymentDate: Scalars['String'];
+  intervalAmount: IntervalAmount;
+  intervalValue: Scalars['Int'];
+  price: Scalars['Int'];
+  serviceName: Scalars['String'];
+};
+
 export enum IntervalAmount {
   Daily = 'DAILY',
   Monthly = 'MONTHLY',
   Weekly = 'WEEKLY',
   Yearly = 'YEARLY'
 }
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createSubscription: Scalars['ID'];
+};
+
+
+export type MutationCreateSubscriptionArgs = {
+  createSubscriptionInput: CreateSubscriptionInput;
+};
 
 export type Query = {
   __typename?: 'Query';

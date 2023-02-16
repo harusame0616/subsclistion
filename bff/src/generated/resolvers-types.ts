@@ -4,6 +4,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -13,11 +14,29 @@ export type Scalars = {
   Float: number;
 };
 
+export type CreateSubscriptionInput = {
+  firstPaymentDate: Scalars['String'];
+  intervalAmount: IntervalAmount;
+  intervalValue: Scalars['Int'];
+  price: Scalars['Int'];
+  serviceName: Scalars['String'];
+};
+
 export type IntervalAmount =
   | 'DAILY'
   | 'MONTHLY'
   | 'WEEKLY'
   | 'YEARLY';
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createSubscription: Scalars['ID'];
+};
+
+
+export type MutationCreateSubscriptionArgs = {
+  createSubscriptionInput: CreateSubscriptionInput;
+};
 
 export type Query = {
   __typename?: 'Query';
@@ -105,9 +124,11 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  CreateSubscriptionInput: CreateSubscriptionInput;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   IntervalAmount: IntervalAmount;
+  Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Subscription: ResolverTypeWrapper<{}>;
@@ -116,11 +137,17 @@ export type ResolversTypes = ResolversObject<{
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
+  CreateSubscriptionInput: CreateSubscriptionInput;
   ID: Scalars['ID'];
   Int: Scalars['Int'];
+  Mutation: {};
   Query: {};
   String: Scalars['String'];
   Subscription: {};
+}>;
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  createSubscription?: Resolver<ResolversTypes['ID'], ParentType, ContextType, RequireFields<MutationCreateSubscriptionArgs, 'createSubscriptionInput'>>;
 }>;
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
@@ -137,6 +164,7 @@ export type SubscriptionResolvers<ContextType = any, ParentType extends Resolver
 }>;
 
 export type Resolvers<ContextType = any> = ResolversObject<{
+  Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Subscription?: SubscriptionResolvers<ContextType>;
 }>;

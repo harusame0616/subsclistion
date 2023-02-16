@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import SubscriptionEntity, { SubscriptionDto } from '../../models/subscription';
-import { SubscriptionRepository } from '../../usecases/subscription-repository';
 import { randomUUID } from 'crypto';
+import { SubscriptionDto, SubscriptionEntity } from '../../models/subscription';
+import { SubscriptionRepository } from '../../usecases/subscription-repository';
 
 @Injectable()
 export class InmemorySubscriptionRepository implements SubscriptionRepository {
