@@ -21,7 +21,7 @@ const formatDate = (date: string) => new Date(date).toLocaleString();
 </script>
 
 <template>
-  <li
+  <div
     :key="props.subscription.id"
     class="border border-gray-300 shadow-sm mb-2 rounded-sm"
   >
@@ -36,7 +36,7 @@ const formatDate = (date: string) => new Date(date).toLocaleString();
         </div>
       </div>
       <div>
-        <div class="text-xs text-stone-500 mr-2">支払い</div>
+        <div class="text-xs text-stone-500 mr-2">値段</div>
         <div>
           {{ formatPrice(props.subscription.price) }} /
           {{
@@ -48,5 +48,5 @@ const formatDate = (date: string) => new Date(date).toLocaleString();
         </div>
       </div>
     </div>
-  </li>
+  </div>
 </template>

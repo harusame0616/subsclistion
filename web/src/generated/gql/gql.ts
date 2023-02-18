@@ -14,6 +14,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  */
 const documents = {
     "\n      query GetSubscriptionList {\n        subscriptions {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    ": types.GetSubscriptionListDocument,
+    "\n      mutation CreateSubscription(\n        $createSubscriptionInput: CreateSubscriptionInput!\n      ) {\n        createSubscription(createSubscriptionInput: $createSubscriptionInput)\n      }\n    ": types.CreateSubscriptionDocument,
 };
 
 /**
@@ -34,6 +35,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n      query GetSubscriptionList {\n        subscriptions {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    "): (typeof documents)["\n      query GetSubscriptionList {\n        subscriptions {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    "];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n      mutation CreateSubscription(\n        $createSubscriptionInput: CreateSubscriptionInput!\n      ) {\n        createSubscription(createSubscriptionInput: $createSubscriptionInput)\n      }\n    "): (typeof documents)["\n      mutation CreateSubscription(\n        $createSubscriptionInput: CreateSubscriptionInput!\n      ) {\n        createSubscription(createSubscriptionInput: $createSubscriptionInput)\n      }\n    "];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

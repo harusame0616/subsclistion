@@ -22,12 +22,11 @@ export type CreateSubscriptionInput = {
   serviceName: Scalars['String'];
 };
 
-export enum IntervalAmount {
-  Daily = 'DAILY',
-  Monthly = 'MONTHLY',
-  Weekly = 'WEEKLY',
-  Yearly = 'YEARLY'
-}
+export type IntervalAmount =
+  | 'DAILY'
+  | 'MONTHLY'
+  | 'WEEKLY'
+  | 'YEARLY';
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -59,5 +58,13 @@ export type GetSubscriptionListQueryVariables = Exact<{ [key: string]: never; }>
 
 export type GetSubscriptionListQuery = { __typename?: 'Query', subscriptions: Array<{ __typename?: 'Subscription', id: string, price: number, serviceName: string, intervalValue: number, intervalAmount: IntervalAmount, firstPaymentDate: string }> };
 
+export type CreateSubscriptionMutationVariables = Exact<{
+  createSubscriptionInput: CreateSubscriptionInput;
+}>;
+
+
+export type CreateSubscriptionMutation = { __typename?: 'Mutation', createSubscription: string };
+
 
 export const GetSubscriptionListDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionList"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscriptions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"serviceName"}},{"kind":"Field","name":{"kind":"Name","value":"intervalValue"}},{"kind":"Field","name":{"kind":"Name","value":"intervalAmount"}},{"kind":"Field","name":{"kind":"Name","value":"firstPaymentDate"}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionListQuery, GetSubscriptionListQueryVariables>;
+export const CreateSubscriptionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateSubscription"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createSubscriptionInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateSubscriptionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createSubscription"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createSubscriptionInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createSubscriptionInput"}}}]}]}}]} as unknown as DocumentNode<CreateSubscriptionMutation, CreateSubscriptionMutationVariables>;

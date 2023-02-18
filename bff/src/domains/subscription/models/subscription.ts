@@ -1,7 +1,13 @@
 import { randomUUID } from 'crypto';
 import { BadParameterError } from '../../../errors/bad-parameter';
 
-export type IntervalAmount = 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY';
+export const intervalAmountList = [
+  'DAILY',
+  'WEEKLY',
+  'MONTHLY',
+  'YEARLY',
+] as const;
+export type IntervalAmount = (typeof intervalAmountList)[number];
 
 export type ConstructorParam = {
   id: string;

@@ -1,7 +1,13 @@
+import {
+  NewSubscription,
+  Subscription,
+} from '../domains/subscription/types/subscription-types';
 import { getRepository } from '../lib/injection';
-import { Subscription } from './subscription-repository';
 
-export type { IntervalAmount } from '~~/src/generated/gql/graphql';
+export type {
+  IntervalAmount,
+  Subscription,
+} from '~~/src/generated/gql/graphql';
 const subscriptionRepository = getRepository('Subscription');
 
 export const useSubscriptionList = () => {
@@ -13,6 +19,18 @@ export const useSubscriptionList = () => {
 
     const subscriptions = await subscriptionRepository.list();
     list.value = subscriptions;
+
+    isLoading.value = false;
+  };
+
+  const create = async (subscription: NewSubscription) => {
+    isLoading.value = true;
+
+    const subscriptionId = await subscriptionRepository.create(subscription);
+    await refresh();
+
+    isLoading.value = false;
+    return subscriptionId;
   };
 
   refresh();
@@ -21,5 +39,6 @@ export const useSubscriptionList = () => {
     list,
     isLoading,
     refresh,
+    create,
   };
 };
