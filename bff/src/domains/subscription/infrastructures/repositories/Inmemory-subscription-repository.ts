@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import SubscriptionEntity, { SubscriptionDto } from '../../models/subscription';
-import { SubscriptionRepository } from '../../usecases/subscription-repository';
 import { randomUUID } from 'crypto';
+import { SubscriptionDto, SubscriptionEntity } from '../../models/subscription';
+import { SubscriptionRepository } from '../../usecases/subscription-repository';
 
 @Injectable()
 export class InmemorySubscriptionRepository implements SubscriptionRepository {
@@ -28,5 +28,9 @@ export class InmemorySubscriptionRepository implements SubscriptionRepository {
     return InmemorySubscriptionRepository.store.map((subscriptionDto) =>
       SubscriptionEntity.fromDto(subscriptionDto),
     );
+  }
+
+  async save(subscription: SubscriptionEntity) {
+    InmemorySubscriptionRepository.store.push(subscription.toDto());
   }
 }
