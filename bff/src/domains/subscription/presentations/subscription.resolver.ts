@@ -28,10 +28,7 @@ export class SubscriptionResolver {
   async subscriptions(): Promise<Schema.Query['subscriptions']> {
     const subscriptions =
       await this.subscriptionQueryUsecase.listSubscription();
-    return subscriptions.map((subscription) => ({
-      ...subscription,
-      firstPaymentDate: subscription.firstPaymentDate.toISOString(),
-    }));
+    return subscriptions;
   }
 
   @Mutation()

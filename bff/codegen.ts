@@ -9,6 +9,9 @@ const config: CodegenConfig = {
       config: {
         useIndexSignature: true,
         enumsAsTypes: true,
+        scalars: {
+          Date: 'Date',
+        },
       },
       plugins: ['typescript', 'typescript-resolvers'],
     },
@@ -17,6 +20,9 @@ const config: CodegenConfig = {
       config: {
         useTypeImports: true,
         enumsAsTypes: true,
+        scalars: {
+          Date: 'string',
+        },
       },
       plugins: [],
     },

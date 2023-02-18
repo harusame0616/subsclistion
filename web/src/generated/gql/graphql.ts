@@ -12,10 +12,11 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: string;
 };
 
 export type CreateSubscriptionInput = {
-  firstPaymentDate: Scalars['String'];
+  firstPaymentDate: Scalars['Date'];
   intervalAmount: IntervalAmount;
   intervalValue: Scalars['Int'];
   price: Scalars['Int'];
@@ -45,7 +46,7 @@ export type Query = {
 
 export type Subscription = {
   __typename?: 'Subscription';
-  firstPaymentDate: Scalars['String'];
+  firstPaymentDate: Scalars['Date'];
   id: Scalars['ID'];
   intervalAmount: IntervalAmount;
   intervalValue: Scalars['Int'];
