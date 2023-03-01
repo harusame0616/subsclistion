@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.7",
+    "@aws-amplify/ui-vue": "^3.1.9",
     "@nuxtjs/tailwindcss": "^6.3.1",
     "eslint-config-prettier": "^8.6.0"
   }
