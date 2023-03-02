@@ -11,7 +11,7 @@ type Subscription {
   serviceName: String!
   intervalValue: Int!
   intervalAmount: IntervalAmount!
-  firstPaymentDate: String!
+  firstPaymentDate: Date!
 }
 
 input CreateSubscriptionInput {
@@ -19,7 +19,7 @@ input CreateSubscriptionInput {
   serviceName: String!
   intervalValue: Int!
   intervalAmount: IntervalAmount!
-  firstPaymentDate: String!
+  firstPaymentDate: Date!
 }
 
 type Query {

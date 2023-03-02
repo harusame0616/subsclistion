@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from 'graphql';
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -12,10 +12,11 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: Date;
 };
 
 export type CreateSubscriptionInput = {
-  firstPaymentDate: Scalars['String'];
+  firstPaymentDate: Scalars['Date'];
   intervalAmount: IntervalAmount;
   intervalValue: Scalars['Int'];
   price: Scalars['Int'];
@@ -45,7 +46,7 @@ export type Query = {
 
 export type Subscription = {
   __typename?: 'Subscription';
-  firstPaymentDate: Scalars['String'];
+  firstPaymentDate: Scalars['Date'];
   id: Scalars['ID'];
   intervalAmount: IntervalAmount;
   intervalValue: Scalars['Int'];
@@ -125,6 +126,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   CreateSubscriptionInput: CreateSubscriptionInput;
+  Date: ResolverTypeWrapper<Scalars['Date']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   IntervalAmount: IntervalAmount;
@@ -138,6 +140,7 @@ export type ResolversTypes = ResolversObject<{
 export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
   CreateSubscriptionInput: CreateSubscriptionInput;
+  Date: Scalars['Date'];
   ID: Scalars['ID'];
   Int: Scalars['Int'];
   Mutation: {};
@@ -145,6 +148,10 @@ export type ResolversParentTypes = ResolversObject<{
   String: Scalars['String'];
   Subscription: {};
 }>;
+
+export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
+  name: 'Date';
+}
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   createSubscription?: Resolver<ResolversTypes['ID'], ParentType, ContextType, RequireFields<MutationCreateSubscriptionArgs, 'createSubscriptionInput'>>;
@@ -155,7 +162,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 }>;
 
 export type SubscriptionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
-  firstPaymentDate?: SubscriptionResolver<ResolversTypes['String'], "firstPaymentDate", ParentType, ContextType>;
+  firstPaymentDate?: SubscriptionResolver<ResolversTypes['Date'], "firstPaymentDate", ParentType, ContextType>;
   id?: SubscriptionResolver<ResolversTypes['ID'], "id", ParentType, ContextType>;
   intervalAmount?: SubscriptionResolver<ResolversTypes['IntervalAmount'], "intervalAmount", ParentType, ContextType>;
   intervalValue?: SubscriptionResolver<ResolversTypes['Int'], "intervalValue", ParentType, ContextType>;
@@ -164,6 +171,7 @@ export type SubscriptionResolvers<ContextType = any, ParentType extends Resolver
 }>;
 
 export type Resolvers<ContextType = any> = ResolversObject<{
+  Date?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Subscription?: SubscriptionResolvers<ContextType>;
