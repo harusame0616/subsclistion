@@ -14,7 +14,6 @@
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@nuxt/eslint-config": "^0.1.1",
-    "@nuxtjs/tailwindcss": "^6.3.1",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
@@ -34,7 +33,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.7",
-    "@nuxtjs/tailwindcss": "^6.3.1",
     "eslint-config-prettier": "^8.6.0"
   }
 }
