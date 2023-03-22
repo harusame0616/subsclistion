@@ -18,9 +18,11 @@
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
+    "@storybook/addon-styling": "^0.3.1",
     "@storybook/builder-vite": "^0.4.2",
     "@storybook/testing-library": "^0.0.13",
     "@storybook/vue3": "^6.5.16",
+    "autoprefixer": "^10.4.14",
     "babel-loader": "^8.3.0",
     "eslint": "^8.33.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -29,6 +31,8 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-storybook": "^0.6.11",
     "nuxt": "^3.1.2",
+    "postcss": "^8.4.21",
+    "postcss-loader": "^7.1.0",
     "vue-loader": "^16.8.3"
   },
   "dependencies": {
