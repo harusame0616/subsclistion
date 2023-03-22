@@ -11,9 +11,16 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: 'tsconfig.json',
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', '*.config.js'],
   rules: {
     'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.stories.*', '**/.storybook/**/*.*'],
+        peerDependencies: true,
+      },
+    ],
   },
   settings: {
     'import/resolver': {
