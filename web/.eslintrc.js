@@ -17,7 +17,13 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.stories.*', '**/.storybook/**/*.*'],
+        devDependencies: [
+          '**/*.stories.*',
+          '**/.storybook/**/*.*',
+          '**/*{.,_}{test,spec}.{ts,tsx}',
+          '**/vitest.config.ts',
+          '**/vitest.setup.ts',
+        ],
         peerDependencies: true,
       },
     ],

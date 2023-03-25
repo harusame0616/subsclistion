@@ -1,0 +1,13 @@
+import matchers, {
+  TestingLibraryMatchers,
+} from '@testing-library/jest-dom/matchers';
+
+declare global {
+  module Vi {
+    interface JestAssertion<T = any>
+      extends jest.Matchers<void, T>,
+        TestingLibraryMatchers<T, void> {}
+  }
+}
+
+expect.extend(matchers);
