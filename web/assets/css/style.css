@@ -1,3 +1,27 @@
 html {
-  background: #1e1b1c;
+  background: #fffdfa;
+  font-family: 'Nato Sans JP', sans-serif;
+}
+
+a {
+  @apply text-yellow-600 underline;
+}
+
+a:visited {
+  @apply text-yellow-900;
+}
+
+a:hover {
+  @apply italic;
+}
+
+a:active {
+  @apply font-bold;
+}
+
+@font-face {
+  font-family: 'Nato Sans JP';
+  src: local('Nato Sans JP')
+    url('~/assets/fonts/nato-sans/NotoSansJP-Regular.otf');
+  font-display: swap;
 }
