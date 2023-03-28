@@ -11,7 +11,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: 'tsconfig.json',
   },
-  ignorePatterns: ['.eslintrc.js', '*.config.js'],
+  ignorePatterns: ['.eslintrc.js', '*.config.js', './storybook/*.js'],
   rules: {
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': [
