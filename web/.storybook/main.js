@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -18,5 +20,13 @@ module.exports = {
   },
   features: {
     storyStoreV7: true,
+  },
+  viteFinal(config) {
+    const rootDir = path.resolve(__dirname, '..');
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      assets: path.resolve(rootDir, 'assets'),
+    };
+    return config;
   },
 };
