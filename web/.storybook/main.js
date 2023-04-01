@@ -15,6 +15,7 @@ module.exports = {
       },
     },
   ],
+  staticDirs: [{ from: '../assets', to: '/~/assets' }],
   framework: '@storybook/vue3',
   core: {
     builder: '@storybook/builder-vite',
