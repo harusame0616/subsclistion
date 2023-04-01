@@ -1,4 +1,5 @@
 const path = require('path');
+const Components = require('unplugin-vue-components/vite');
 
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
@@ -14,6 +15,7 @@ module.exports = {
       },
     },
   ],
+  staticDirs: [{ from: '../assets', to: '/~/assets' }],
   framework: '@storybook/vue3',
   core: {
     builder: '@storybook/builder-vite',
@@ -27,6 +29,12 @@ module.exports = {
       ...config.resolve.alias,
       assets: path.resolve(rootDir, 'assets'),
     };
+    config.plugins.push(
+      Components({
+        dts: false,
+        dirs: [path.resolve(rootDir, 'components')],
+      })
+    );
     return config;
   },
 };

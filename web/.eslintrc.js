@@ -11,6 +11,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: 'tsconfig.json',
   },
+  plugins: ['import'],
   ignorePatterns: ['.eslintrc.js', '*.config.js', './storybook/*.js'],
   rules: {
     'import/prefer-default-export': 'off',
@@ -33,7 +34,8 @@ module.exports = {
       typescript: {
         alwaysTryTypes: true,
         // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
-        project: 'tsconfig.json',
+        tsconfigRootDir: __dirname,
+        project: ['tsconfig.json'],
       },
     },
   },

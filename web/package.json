@@ -39,11 +39,13 @@
     "postcss": "^8.4.21",
     "postcss-loader": "^7.1.0",
     "tailwindcss": "^3.2.7",
+    "unplugin-vue-components": "^0.24.1",
     "vitest": "^0.29.7",
     "vue-loader": "^16.8.3"
   },
   "dependencies": {
     "@apollo/client": "^3.7.7",
-    "eslint-config-prettier": "^8.6.0"
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.4"
   }
 }

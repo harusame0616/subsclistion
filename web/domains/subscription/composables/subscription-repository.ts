@@ -1,7 +1,7 @@
 import type {
   MutationCreateSubscriptionArgs,
   Subscription,
-} from '~~/src/generated/gql/graphql';
+} from '~/src/generated/gql/graphql';
 
 export type { Subscription };
 

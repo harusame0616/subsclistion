@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { NewSubscription } from '~~/domains/subscription/types/subscription-types';
+import { NewSubscription } from '~/domains/subscription/types/subscription-types';
 import {
   IntervalAmount,
   Subscription,
-} from '../../composables/useSubscriptionList';
+} from '~/domains/subscription/composables/useSubscriptionList';
 
-const props = defineProps<{
-  subscription?: Subscription;
-}>();
-const emits = defineEmits<{
-  (e: 'register', value: Subscription | NewSubscription): void;
-  (e: 'cancel'): void;
-}>();
+const props =
+  defineProps<{
+    subscription?: Subscription;
+  }>();
+const emits =
+  defineEmits<{
+    (e: 'register', value: Subscription | NewSubscription): void;
+    (e: 'cancel'): void;
+  }>();
 
 const intervalAmountOptions: { value: IntervalAmount; label: string }[] = [
   { value: 'DAILY', label: '日ごと' },

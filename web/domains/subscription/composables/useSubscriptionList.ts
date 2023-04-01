@@ -1,15 +1,11 @@
 import {
   NewSubscription,
   Subscription,
-} from '../domains/subscription/types/subscription-types';
-import { getRepository } from '../lib/injection';
+} from '~/domains/subscription/types/subscription-types';
 
-export type {
-  IntervalAmount,
-  Subscription,
-} from '~~/src/generated/gql/graphql';
+export type { IntervalAmount, Subscription } from '~/src/generated/gql/graphql';
+
 const subscriptionRepository = getRepository('Subscription');
-
 export const useSubscriptionList = () => {
   const list = ref<Subscription[]>([]);
   const isLoading = ref(false);
