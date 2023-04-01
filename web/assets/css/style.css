@@ -21,7 +21,7 @@ a:active {
 
 @font-face {
   font-family: 'Nato Sans JP';
-  src: local('Nato Sans JP')
+  src: local('Nato Sans JP'),
     url('~/assets/fonts/nato-sans/NotoSansJP-Regular.otf');
   font-display: swap;
 }
