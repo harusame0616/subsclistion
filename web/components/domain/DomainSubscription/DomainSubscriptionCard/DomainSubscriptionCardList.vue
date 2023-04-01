@@ -8,11 +8,9 @@ const props =
 </script>
 
 <template>
-  <ul class="grow max-w-sm relative flex flex-col gap-2">
-    <DomainSubscriptionCard
-      v-for="subscription of props.subscriptions"
-      :key="subscription.id"
-      :subscription="subscription"
-    />
+  <ul class="grow relative flex flex-col gap-2">
+    <li v-for="subscription of props.subscriptions" :key="subscription.id">
+      <DomainSubscriptionCard :subscription="subscription" />
+    </li>
   </ul>
 </template>
