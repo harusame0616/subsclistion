@@ -3,6 +3,7 @@ import {
   NewSubscription,
   Subscription,
 } from '~/domains/subscription/types/subscription-types';
+import { useSubscriptionList } from '~/domains/subscription/composables/useSubscriptionList';
 
 const subscriptionList = useSubscriptionList();
 const editSubscription = computed(() => undefined);
