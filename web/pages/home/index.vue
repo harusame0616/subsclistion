@@ -2,7 +2,7 @@
 import {
   NewSubscription,
   Subscription,
-} from '~~/domains/subscription/types/subscription-types';
+} from '~/domains/subscription/types/subscription-types';
 
 const subscriptionList = useSubscriptionList();
 const editSubscription = computed(() => undefined);
@@ -31,22 +31,44 @@ const cancel = () => {
 
 <template>
   <div class="flex justify-center">
-    <DomainsSubscriptionList
+    <DomainSubscriptionCardList
       :subscriptions="subscriptionList.list.value"
       class="w-full max-w-md"
     />
-    <DomainsSubscriptionEditModal
+    <DomainSubscriptionModalEdit
       v-if="isEditModalOpened"
       :subscription="editSubscription"
       @cancel="cancel"
       @register="register"
-    ></DomainsSubscriptionEditModal>
+    />
     <div
-      class="w-full max-w-sm fixed mx-auto inset-x-0 bottom-4 flex justify-end items-end p-4"
+      class="
+        w-full
+        max-w-sm
+        fixed
+        mx-auto
+        inset-x-0
+        bottom-4
+        flex
+        justify-end
+        items-end
+        p-4
+      "
     >
       <button
         v-if="!isEditModalOpened"
-        class="border border-gray-300 shadow-sm rounded-full text-gray-200 text-sm h-8 w-8 flex justify-center items-center bg-sky-600"
+        class="
+          border border-gray-300
+          shadow-sm
+          rounded-full
+          text-gray-200 text-sm
+          h-8
+          w-8
+          flex
+          justify-center
+          items-center
+          bg-sky-600
+        "
         @click="toggleEditModal()"
       >
         +

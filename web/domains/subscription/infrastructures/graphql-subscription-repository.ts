@@ -1,11 +1,12 @@
 /* eslint-disable class-methods-use-this */
-import { SubscriptionRepository } from '../../../../composables/subscription-repository';
-import { GraphqlClient } from '../../../../lib/graphql';
-import { graphql } from '../../../../src/generated/gql';
-import { MutationCreateSubscriptionArgs } from '../../../../src/generated/gql/graphql';
+import { graphql } from '../../../src/generated/gql';
+import {
+  CreateParam,
+  SubscriptionRepository,
+} from '../composables/subscription-repository';
 
 export class GraphQLSubscriptionRepository implements SubscriptionRepository {
-  private static readonly client = GraphqlClient;
+  private static readonly client = getGraphqlClient();
 
   async list() {
     const getSubscriptionListQuery = graphql(`
@@ -29,9 +30,7 @@ export class GraphQLSubscriptionRepository implements SubscriptionRepository {
     return result.data.subscriptions;
   }
 
-  async create(
-    subscription: MutationCreateSubscriptionArgs['createSubscriptionInput']
-  ): Promise<string> {
+  async create(subscription: CreateParam): Promise<string> {
     const createSubscription = graphql(`
       mutation CreateSubscription(
         $createSubscriptionInput: CreateSubscriptionInput!

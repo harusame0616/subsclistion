@@ -3,7 +3,7 @@ import postCssConfig from './postcss.config';
 
 export default defineNuxtConfig({
   modules: [],
-  css: ['@/assets/css/tailwind.css', '~/assets/css/style.css'],
+  css: ['~/assets/css/tailwind.css', '~/assets/css/style.css'],
   vite: {
     server: {
       proxy: {
