@@ -30,6 +30,7 @@ module.exports = {
     };
     config.plugins.push(
       Components({
+        dts: false,
         dirs: [path.resolve(rootDir, 'components')],
       })
     );
