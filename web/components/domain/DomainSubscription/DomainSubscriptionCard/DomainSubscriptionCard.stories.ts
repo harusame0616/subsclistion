@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from '@storybook/vue3';
 import DomainSubscriptionCard from './DomainSubscriptionCard.vue';
 
 export default {
-  title: 'DomainSubscriptionCard',
+  title: 'Domain/Subscription/Card',
   component: DomainSubscriptionCard,
 } as Meta<typeof DomainSubscriptionCard>;
 

@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from '@storybook/vue3';
 import CaseCardWithTitle from './CaseCardWithTitle.vue';
 
 export default {
-  title: 'CaseCardWithTitle',
+  title: 'Case/Card/WithTitle',
   component: CaseCardWithTitle,
 } as Meta<typeof CaseCardWithTitle>;
 
