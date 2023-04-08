@@ -5,7 +5,7 @@ import {
 } from '~/domains/subscription/types/subscription-types';
 import { useSubscriptionList } from '~/domains/subscription/composables/useSubscriptionList';
 
-const subscriptionList = useSubscriptionList();
+const { subscriptions, createSubscription } = useSubscriptionList();
 const editSubscription = computed(() => undefined);
 const isEditModalOpened = ref(false);
 
@@ -20,7 +20,7 @@ const isNewSubscription = (v: unknown): v is NewSubscription =>
 
 const register = async (subscription: Subscription | NewSubscription) => {
   if (isNewSubscription(subscription)) {
-    await subscriptionList.create(subscription);
+    await createSubscription(subscription);
   }
 
   closeEditModal();
@@ -33,7 +33,7 @@ const cancel = () => {
 <template>
   <div class="flex justify-center">
     <DomainSubscriptionCardList
-      :subscriptions="subscriptionList.list.value"
+      :subscriptions="subscriptions ?? []"
       class="w-full max-w-md"
     />
     <DomainSubscriptionModalEdit

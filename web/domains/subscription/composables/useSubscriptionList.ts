@@ -7,34 +7,30 @@ export type { IntervalAmount, Subscription } from '~/src/generated/gql/graphql';
 
 const subscriptionRepository = getRepository('Subscription');
 export const useSubscriptionList = () => {
-  const list = ref<Subscription[]>([]);
   const isLoading = ref(false);
 
-  const refresh = async () => {
-    isLoading.value = true;
+  const {
+    data: subscriptions,
+    refresh: refreshSubscriptions,
+    pending,
+  } = useLazyAsyncData<Subscription[]>('subscriptions', () =>
+    subscriptionRepository.list()
+  );
 
-    const subscriptions = await subscriptionRepository.list();
-    list.value = subscriptions;
-
-    isLoading.value = false;
-  };
-
-  const create = async (subscription: NewSubscription) => {
+  const createSubscription = async (subscription: NewSubscription) => {
     isLoading.value = true;
 
     const subscriptionId = await subscriptionRepository.create(subscription);
-    await refresh();
+    await refreshSubscriptions();
 
     isLoading.value = false;
     return subscriptionId;
   };
 
-  refresh();
-
   return {
-    list,
-    isLoading,
-    refresh,
-    create,
+    subscriptions,
+    isSubscriptionsLoading: computed(() => isLoading.value || pending.value),
+    refreshSubscriptions,
+    createSubscription,
   };
 };
