@@ -24,6 +24,7 @@ module.exports = {
           '**/*{.,_}{test,spec}.{ts,tsx}',
           '**/vitest.config.ts',
           '**/vitest.setup.ts',
+          './mocks/**/*.*',
         ],
         peerDependencies: true,
       },

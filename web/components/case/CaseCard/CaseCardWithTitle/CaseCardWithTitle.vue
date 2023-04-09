@@ -5,9 +5,9 @@
     <h2 class="text-xl font-bold mb-3">
       <slot name="title"> </slot>
     </h2>
-    <p>
+    <div>
       <slot></slot>
-    </p>
+    </div>
   </BaseCard>
 </template>
 
