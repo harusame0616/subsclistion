@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      MOCK: true,
+      mock: true,
     },
   },
 });
