@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "//": "MSW で MOCK ができないので node の native fetch を無効にする",
+    "dev": "NODE_OPTIONS='--no-experimental-fetch' nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
