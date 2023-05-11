@@ -7,40 +7,42 @@ const subscriptionRepository = getRepository('Subscription');
 export const useSubscriptionList = () => {
   const isLoading = ref(false);
 
-  const {
-    data,
-    refresh: refreshSubscriptions,
-    error,
-    pending,
-  } = useLazyAsyncQuery<GetSubscriptionListQuery>(
-    gql`
-      query GetSubscriptionList {
-        subscriptions {
-          id
-          price
-          serviceName
-          intervalValue
-          intervalAmount
-          firstPaymentDate
-        }
+  const query = gql`
+    query GetSubscriptionList {
+      subscriptions {
+        id
+        price
+        serviceName
+        intervalValue
+        intervalAmount
+        firstPaymentDate
       }
-    `
-  );
+    }
+  `.loc?.source.body;
+
+  const { data, refresh, pending, error } = useLazyFetch<{
+    data: GetSubscriptionListQuery;
+  }>('http://localhost:3001/graphql', {
+    method: 'POST',
+    body: {
+      query,
+    },
+  });
 
   const createSubscription = async (subscription: NewSubscription) => {
     isLoading.value = true;
 
     const subscriptionId = await subscriptionRepository.create(subscription);
-    await refreshSubscriptions();
+    await refresh();
 
     isLoading.value = false;
     return subscriptionId;
   };
 
   return {
-    subscriptions: computed(() => data.value?.subscriptions ?? []),
+    subscriptions: computed(() => data.value?.data.subscriptions ?? []),
     isSubscriptionsLoading: computed(() => isLoading.value || pending.value),
-    refreshSubscriptions,
+    refresh,
     createSubscription,
     error,
   };

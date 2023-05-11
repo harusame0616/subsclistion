@@ -1,4 +1,4 @@
-import { rest, graphql } from 'msw';
+import { graphql } from 'msw';
 import {
   ChangeServiceNameMutationVariables,
   GetSubscriptionListQuery,

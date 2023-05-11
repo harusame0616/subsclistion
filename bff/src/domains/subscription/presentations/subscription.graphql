@@ -22,10 +22,28 @@ input CreateSubscriptionInput {
   firstPaymentDate: Date!
 }
 
+input UpdateSubscriptionInput {
+  price: Int
+  serviceName: String
+  intervalValue: Int
+  intervalAmount: IntervalAmount
+  firstPaymentDate: Date
+}
+
 type Query {
   subscriptions: [Subscription!]!
 }
 
 type Mutation {
   createSubscription(createSubscriptionInput: CreateSubscriptionInput!): ID!
+
+  changeSubscriptionServiceName(
+    subscriptionId: String!
+    newServiceName: String!
+  ): Subscription!
+
+  updateSubscription(
+    subscriptionId: String!
+    updateSubscriptionInput: UpdateSubscriptionInput!
+  ): ID!
 }
