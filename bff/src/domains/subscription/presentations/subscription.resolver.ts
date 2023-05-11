@@ -43,4 +43,21 @@ export class SubscriptionResolver {
 
     return newSubscriptionId;
   }
+
+  @Mutation()
+  async changeSubscriptionServiceName(
+    @Args()
+    {
+      subscriptionId,
+      newServiceName,
+    }: Schema.MutationChangeSubscriptionServiceNameArgs,
+  ): Promise<Schema.Mutation['changeSubscriptionServiceName']> {
+    const subscription =
+      await this.subscriptionCommandUsecase.changeServiceName(
+        subscriptionId,
+        newServiceName,
+      );
+
+    return subscription;
+  }
 }

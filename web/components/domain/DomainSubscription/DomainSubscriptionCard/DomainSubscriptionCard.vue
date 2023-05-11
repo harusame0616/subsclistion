@@ -80,7 +80,9 @@ watchEffect(() => {
 
       <div class="flex flex-col gap-2">
         <div>
-          <div class="text-xs text-stone-600 mr-2">初回支払日</div>
+          <label class="text-xs text-stone-600 mr-2" for="firstPaymentForm"
+            >初回支払日</label
+          >
           <div>
             {{ formatDate(props.subscription.firstPaymentDate) }}
           </div>

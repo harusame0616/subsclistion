@@ -13,10 +13,10 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "\n      mutation ChangeServiceName(\n        $subscriptionId: String!\n        $newServiceName: String!\n      ) {\n        changeSubscriptionServiceName(\n          subscriptionId: $subscriptionId\n          newServiceName: $newServiceName\n        ) {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    ": types.ChangeServiceNameDocument,
+    "\n      mutation ChangeSubscriptionServiceName(\n        $subscriptionId: String!\n        $newServiceName: String!\n      ) {\n        changeSubscriptionServiceName(\n          subscriptionId: $subscriptionId\n          newServiceName: $newServiceName\n        ) {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    ": types.ChangeSubscriptionServiceNameDocument,
+    "\n    query GetSubscriptionList {\n      subscriptions {\n        id\n        price\n        serviceName\n        intervalValue\n        intervalAmount\n        firstPaymentDate\n      }\n    }\n  ": types.GetSubscriptionListDocument,
     "\n      query GetSubscriptionList {\n        subscriptions {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    ": types.GetSubscriptionListDocument,
     "\n      mutation CreateSubscription(\n        $createSubscriptionInput: CreateSubscriptionInput!\n      ) {\n        createSubscription(createSubscriptionInput: $createSubscriptionInput)\n      }\n    ": types.CreateSubscriptionDocument,
-    "\n      mutation UpdateSubscription(\n        $subscriptionId: String!\n        $updateSubscriptionInput: UpdateSubscriptionInput!\n      ) {\n        updateSubscription(\n          subscriptionId: $subscriptionId\n          updateSubscriptionInput: $updateSubscriptionInput\n        )\n      }\n    ": types.UpdateSubscriptionDocument,
 };
 
 /**
@@ -36,7 +36,11 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n      mutation ChangeServiceName(\n        $subscriptionId: String!\n        $newServiceName: String!\n      ) {\n        changeSubscriptionServiceName(\n          subscriptionId: $subscriptionId\n          newServiceName: $newServiceName\n        ) {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    "): (typeof documents)["\n      mutation ChangeServiceName(\n        $subscriptionId: String!\n        $newServiceName: String!\n      ) {\n        changeSubscriptionServiceName(\n          subscriptionId: $subscriptionId\n          newServiceName: $newServiceName\n        ) {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    "];
+export function graphql(source: "\n      mutation ChangeSubscriptionServiceName(\n        $subscriptionId: String!\n        $newServiceName: String!\n      ) {\n        changeSubscriptionServiceName(\n          subscriptionId: $subscriptionId\n          newServiceName: $newServiceName\n        ) {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    "): (typeof documents)["\n      mutation ChangeSubscriptionServiceName(\n        $subscriptionId: String!\n        $newServiceName: String!\n      ) {\n        changeSubscriptionServiceName(\n          subscriptionId: $subscriptionId\n          newServiceName: $newServiceName\n        ) {\n          id\n          price\n          serviceName\n          intervalValue\n          intervalAmount\n          firstPaymentDate\n        }\n      }\n    "];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query GetSubscriptionList {\n      subscriptions {\n        id\n        price\n        serviceName\n        intervalValue\n        intervalAmount\n        firstPaymentDate\n      }\n    }\n  "): (typeof documents)["\n    query GetSubscriptionList {\n      subscriptions {\n        id\n        price\n        serviceName\n        intervalValue\n        intervalAmount\n        firstPaymentDate\n      }\n    }\n  "];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -45,10 +49,6 @@ export function graphql(source: "\n      query GetSubscriptionList {\n        su
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n      mutation CreateSubscription(\n        $createSubscriptionInput: CreateSubscriptionInput!\n      ) {\n        createSubscription(createSubscriptionInput: $createSubscriptionInput)\n      }\n    "): (typeof documents)["\n      mutation CreateSubscription(\n        $createSubscriptionInput: CreateSubscriptionInput!\n      ) {\n        createSubscription(createSubscriptionInput: $createSubscriptionInput)\n      }\n    "];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n      mutation UpdateSubscription(\n        $subscriptionId: String!\n        $updateSubscriptionInput: UpdateSubscriptionInput!\n      ) {\n        updateSubscription(\n          subscriptionId: $subscriptionId\n          updateSubscriptionInput: $updateSubscriptionInput\n        )\n      }\n    "): (typeof documents)["\n      mutation UpdateSubscription(\n        $subscriptionId: String!\n        $updateSubscriptionInput: UpdateSubscriptionInput!\n      ) {\n        updateSubscription(\n          subscriptionId: $subscriptionId\n          updateSubscriptionInput: $updateSubscriptionInput\n        )\n      }\n    "];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

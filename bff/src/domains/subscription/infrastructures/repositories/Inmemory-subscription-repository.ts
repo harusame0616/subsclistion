@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { SubscriptionDto, SubscriptionEntity } from '../../models/subscription';
 import { SubscriptionRepository } from '../../usecases/subscription-repository';
@@ -32,5 +32,16 @@ export class InmemorySubscriptionRepository implements SubscriptionRepository {
 
   async save(subscription: SubscriptionEntity) {
     InmemorySubscriptionRepository.store.push(subscription.toDto());
+  }
+
+  async getById(subscriptionId: string): Promise<SubscriptionEntity> {
+    const subscriptionDto = InmemorySubscriptionRepository.store.find(
+      (subscriptionDto) => subscriptionDto.id === subscriptionId,
+    );
+
+    if (!subscriptionDto) {
+      throw new NotFoundException('ID');
+    }
+    return SubscriptionEntity.fromDto(subscriptionDto);
   }
 }
