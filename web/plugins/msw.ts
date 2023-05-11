@@ -1,5 +1,10 @@
 export default defineNuxtPlugin(async () => {
-  if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'test') {
+  const config = useRuntimeConfig();
+  if (!config.public.mock) {
+    return;
+  }
+
+  if (typeof window !== 'undefined') {
     const { worker } = await import('~/mocks/browser');
     worker.start();
   } else {
