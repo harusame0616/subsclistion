@@ -18,4 +18,15 @@ export class SubscriptionCommandUsecase {
     await this.subscriptionRepository.save(newSubscription);
     return newSubscription.id;
   }
+
+  async changeServiceName(subscriptionId: string, newServiceName: string) {
+    const subscription = await this.subscriptionRepository.getById(
+      subscriptionId,
+    );
+
+    subscription.changeServiceName(newServiceName);
+
+    await this.subscriptionRepository.save(subscription);
+    return subscription.toDto();
+  }
 }

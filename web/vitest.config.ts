@@ -1,10 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { defineConfig } from 'vitest/config';
-import vue from '@vitejs/plugin-vue';
+import { defineVitestConfig } from 'nuxt-vitest/config';
 
-export default defineConfig({
-  plugins: [vue()],
-
+export default defineVitestConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],

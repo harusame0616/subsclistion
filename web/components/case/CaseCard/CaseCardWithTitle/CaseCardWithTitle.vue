@@ -1,8 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const emit =
+  defineEmits<{
+    (e: 'click:title'): void;
+  }>();
+</script>
 
 <template>
   <BaseCard>
-    <h2 class="text-xl font-bold mb-3">
+    <h2 class="text-xl font-bold mb-3" @click="emit('click:title')">
       <slot name="title"> </slot>
     </h2>
     <div>

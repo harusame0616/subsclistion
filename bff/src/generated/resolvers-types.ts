@@ -31,12 +31,26 @@ export type IntervalAmount =
 
 export type Mutation = {
   __typename?: 'Mutation';
+  changeSubscriptionServiceName: Subscription;
   createSubscription: Scalars['ID'];
+  updateSubscription: Scalars['ID'];
+};
+
+
+export type MutationChangeSubscriptionServiceNameArgs = {
+  newServiceName: Scalars['String'];
+  subscriptionId: Scalars['String'];
 };
 
 
 export type MutationCreateSubscriptionArgs = {
   createSubscriptionInput: CreateSubscriptionInput;
+};
+
+
+export type MutationUpdateSubscriptionArgs = {
+  subscriptionId: Scalars['String'];
+  updateSubscriptionInput: UpdateSubscriptionInput;
 };
 
 export type Query = {
@@ -52,6 +66,14 @@ export type Subscription = {
   intervalValue: Scalars['Int'];
   price: Scalars['Int'];
   serviceName: Scalars['String'];
+};
+
+export type UpdateSubscriptionInput = {
+  firstPaymentDate?: InputMaybe<Scalars['Date']>;
+  intervalAmount?: InputMaybe<IntervalAmount>;
+  intervalValue?: InputMaybe<Scalars['Int']>;
+  price?: InputMaybe<Scalars['Int']>;
+  serviceName?: InputMaybe<Scalars['String']>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -134,6 +156,7 @@ export type ResolversTypes = ResolversObject<{
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Subscription: ResolverTypeWrapper<{}>;
+  UpdateSubscriptionInput: UpdateSubscriptionInput;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -147,6 +170,7 @@ export type ResolversParentTypes = ResolversObject<{
   Query: {};
   String: Scalars['String'];
   Subscription: {};
+  UpdateSubscriptionInput: UpdateSubscriptionInput;
 }>;
 
 export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
@@ -154,7 +178,9 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 }
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  changeSubscriptionServiceName?: Resolver<ResolversTypes['Subscription'], ParentType, ContextType, RequireFields<MutationChangeSubscriptionServiceNameArgs, 'newServiceName' | 'subscriptionId'>>;
   createSubscription?: Resolver<ResolversTypes['ID'], ParentType, ContextType, RequireFields<MutationCreateSubscriptionArgs, 'createSubscriptionInput'>>;
+  updateSubscription?: Resolver<ResolversTypes['ID'], ParentType, ContextType, RequireFields<MutationUpdateSubscriptionArgs, 'subscriptionId' | 'updateSubscriptionInput'>>;
 }>;
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{

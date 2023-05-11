@@ -4,16 +4,21 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "//": "MSW で MOCK ができないので node の native fetch を無効にする",
+    "dev": "NODE_OPTIONS='--no-experimental-fetch' nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "playwright test "
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@nuxt/eslint-config": "^0.1.1",
+    "@nuxt/test-utils": "^3.4.1",
+    "@nuxtjs/apollo": "^5.0.0-alpha.6",
+    "@playwright/test": "^1.32.3",
     "@storybook/addon-a11y": "^6.5.16",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
@@ -37,16 +42,20 @@
     "jsdom": "^21.1.1",
     "msw": "^1.2.1",
     "nuxt": "^3.1.2",
+    "nuxt-vitest": "^0.6.9",
     "postcss": "^8.4.21",
     "postcss-loader": "^7.1.0",
     "tailwindcss": "^3.2.7",
+    "unplugin-auto-import": "^0.15.3",
     "unplugin-vue-components": "^0.24.1",
+    "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.29.7",
     "vue-loader": "^16.8.3"
   },
   "dependencies": {
     "@apollo/client": "^3.7.7",
     "eslint-config-prettier": "^8.6.0",
-    "eslint-import-resolver-typescript": "^3.5.4"
+    "eslint-import-resolver-typescript": "^3.5.4",
+    "uuid": "^9.0.0"
   }
 }

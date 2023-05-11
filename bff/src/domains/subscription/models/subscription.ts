@@ -45,6 +45,11 @@ export class SubscriptionEntity {
     return this.param.serviceName;
   }
 
+  changeServiceName(serviceName: string) {
+    SubscriptionEntity.validateServiceName(serviceName);
+    this.param.serviceName = serviceName;
+  }
+
   static validateServiceName(serviceName: string) {
     const MIN_SERVICE_NAME_LENGTH = 1;
 

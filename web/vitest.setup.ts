@@ -1,6 +1,7 @@
 import matchers, {
   TestingLibraryMatchers,
 } from '@testing-library/jest-dom/matchers';
+import { server } from './mocks/node';
 
 declare global {
   module Vi {
@@ -11,3 +12,7 @@ declare global {
 }
 
 expect.extend(matchers);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+beforeAll(() => server.close());

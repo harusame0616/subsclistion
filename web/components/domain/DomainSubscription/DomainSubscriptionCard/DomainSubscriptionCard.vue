@@ -1,13 +1,19 @@
 <script setup lang="ts">
+import { BaseInput } from '~/components/base/BaseInput';
 import {
   IntervalAmount,
   Subscription,
 } from '~/domains/subscription/composables/useSubscriptionList';
+import { useSubscriptionEdit } from '~/domains/subscription/composables/useSubScriptionEdit';
 
 const props =
   defineProps<{
     subscription: Subscription;
   }>();
+
+const { subscription, changeServiceName } = useSubscriptionEdit({
+  initialSubscription: props.subscription,
+});
 const formatPrice = (price: number) => `${price.toLocaleString()}`;
 const formatInterval = (value: number, amount: IntervalAmount) => {
   const amountDisplayMap: { [k in IntervalAmount]: string } = {
@@ -19,18 +25,64 @@ const formatInterval = (value: number, amount: IntervalAmount) => {
   return `${value}${amountDisplayMap[amount]}`;
 };
 const formatDate = (date: string) => new Date(date).toLocaleString();
+
+const serviceNameEditing = ref(props.subscription.serviceName);
+const isServiceNameEditing = ref(false);
+const serviceNameInputRef = ref<InstanceType<typeof BaseInput> | null>(null);
+
+const startServiceNameTitleEdit = () => {
+  isServiceNameEditing.value = true;
+};
+
+const clearServiceNameEditStatus = () => {
+  isServiceNameEditing.value = false;
+  serviceNameInputRef.value?.$el.blur();
+};
+
+const finishServiceNameTitleEdit = async (
+  serviceName: string = subscription.value.serviceName
+) => {
+  changeServiceName(serviceName);
+  clearServiceNameEditStatus();
+};
+
+const cancelServiceNameTitleEdit = () => {
+  serviceNameEditing.value = subscription.value.serviceName;
+  clearServiceNameEditStatus();
+};
+
+watchEffect(() => {
+  serviceNameEditing.value = props.subscription.serviceName;
+});
 </script>
 
 <template>
   <article>
-    <CaseCardWithTitle>
+    <CaseCardWithTitle @click:title="startServiceNameTitleEdit">
       <template #title>
-        {{ props.subscription.serviceName }}
+        <label
+          :for="subscription.id + 'serviceName'"
+          class="text-xs text-stone-600 mr-2 block"
+          >サービス名</label
+        >
+        <BaseInput
+          :id="subscription.id + 'serviceName'"
+          ref="serviceNameInputRef"
+          v-model="serviceNameEditing"
+          type="text"
+          class="-ml-2"
+          :no-border="!isServiceNameEditing"
+          @change="finishServiceNameTitleEdit"
+          @blur="finishServiceNameTitleEdit()"
+          @keydown.esc.prevent.stop="cancelServiceNameTitleEdit"
+        />
       </template>
 
       <div class="flex flex-col gap-2">
         <div>
-          <div class="text-xs text-stone-600 mr-2">初回支払日</div>
+          <label class="text-xs text-stone-600 mr-2" for="firstPaymentForm"
+            >初回支払日</label
+          >
           <div>
             {{ formatDate(props.subscription.firstPaymentDate) }}
           </div>
